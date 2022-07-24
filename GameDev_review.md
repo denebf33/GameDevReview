@@ -32,7 +32,7 @@
 
 ## Floating Point Numbers
 
-![image-20220711171549222](/Users/deneb/Library/Application Support/typora-user-images/image-20220711171549222.png)
+![image-20220711171549222](./imgs/image-20220711171549222.png)
 
 - Exponent is **128 - value** because when value is large number, exponent will be negative and that allows **fractions**
 
@@ -99,13 +99,13 @@ memory usage:
 
 - Relocatable Heap
 
-  ![image-20220716190324415](/Users/deneb/Library/Application Support/typora-user-images/image-20220716190324415.png)
+  ![image-20220716190324415](./imgs/image-20220716190324415.png)
 
-  ![image-20220716190349561](/Users/deneb/Library/Application Support/typora-user-images/image-20220716190349561.png)
+  ![image-20220716190349561](./imgs/image-20220716190349561.png)
 
 ### PS4 CPU layout
 
-![image-20220716193052264](/Users/deneb/Library/Application Support/typora-user-images/image-20220716193052264.png)
+![image-20220716193052264](./imgs/image-20220716193052264.png)
 
 ### Cache line
 
@@ -431,10 +431,37 @@ When they are not auto generated?
     - Construct hash table length as a prime number, for easy moding
   - Separate chaining
 
+- Access to an array element is very fast.
 ## Arrays
 
-```C++
-int myArray[sizeN];
-```
+- Access to an element is fast.
+- Arrays vs. Lists
+  - Access to arrays' element is fast (when you know the exact index), while there must be a traversal with list
+  - Delete/add element in a list is easy, while is really hard in a array (static data structure)
+  - Array is contiguous in memory, while lists' elements can be discrete.
 
-- Access to an array element is very fast.
+## Binary Search Trees
+
+- Balanced BST v. unbalanced BST
+  - For each root, the difference between its left and right subtree is less than one, then it's a balanced tree.
+  - Unbalanced tree lookup time **O(n)**, while for a balanced tree only **O(logn)**
+  - Balanced tree always better, only take up a little more storage.
+
+- AVL vs. R&B Tree
+  - AVL and R&B both have **O(logn)** on balancing, but R&B tree only have **O(1)** on rebalancing while AVL have **O(logn)** on it.
+  - AVL is strict balanced while R&B tree is not.
+  - AVL stores an int per node(height/balance factor), R&B Tree stores 1 bit for each node (red/black)
+  - AVL has better lookup (used for *database*), R&B Tree has better insert/delete(used for *std::map* and *std::set*), because R&B tree only do limited rotation operation when rebalancing, that will leads a less strictly balanced structure.
+
+## Queue Implementation
+
+- By linked list/ by dynamic array (double size if space is not enough/ reoccupy dequeued position)
+
+- By two stack
+  - Push elements only into stack1
+  - When pop:
+    - If stack2 is not empty, pop from stack2
+    - If stack2 is empty, push all elements of stack1 into stack2, then pop from stack2
+
+![image-20220723162158243](./imgs/image-20220723162158243.png)
+
