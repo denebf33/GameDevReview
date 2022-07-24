@@ -1,4 +1,6 @@
-# Bitewise operators
+# C++
+
+## Bitewise operators
 
 - **smallest** unit of data.
 - bool take **8** bits.
@@ -10,7 +12,7 @@
 - Checking a mask: wasMaskOn = **((number) & mask == mask)**
 - Check polarity of two float is the same or not: **bitwise check first bit**
 
-# Binary / Hexadecimal Numbers
+## Binary / Hexadecimal Numbers
 
 - $2^6 = 64$, $2^8 = 256$
 
@@ -28,7 +30,7 @@
 - ASCII table has *127* entries, A is *065*
 - *Big-edian* means store start with the most significant bit.
 
-# Floating Point Numbers
+## Floating Point Numbers
 
 ![image-20220711171549222](/Users/deneb/Library/Application Support/typora-user-images/image-20220711171549222.png)
 
@@ -51,7 +53,7 @@
 - This will cause compare in float is not accurate sometimes.
 - **FLI_EPSILON** used as a minimal gap of float numbers while comparing. (equals specifically)
 
-# Data Type Sizes
+## Data Type Sizes
 
 | Data Type |   32-bit size    | 62-bit size (if different) |
 | :-------: | :--------------: | :------------------------: |
@@ -64,7 +66,7 @@
 |  double   | 8 bytes(64 bits) |                            |
 |  Pointer  | 4 bytes(32 bits) |      8 bytes(64 bits)      |
 
-# Alignment
+## Alignment
 
 For c++ compiler:
 
@@ -82,9 +84,9 @@ For c++ compiler:
 
   Size of above struct should be: 1 + (current offset is not integer times of next data size double *8 bytes*, so add a 7 bytes padding here)7 + 8 + 4 + 2(current struct size is 22 and is not integer times of biggest data size 8, so add 2 padding here to make it 24) = 24.
 
-# Caches
+## Caches
 
-## Memory layout
+### Memory layout
 
 memory usage:
 
@@ -93,7 +95,7 @@ memory usage:
 - **Heap**: Store dynamically allocated memory.(pointer pointed memory)
 - **Stack:** Store statically allocated memory. (parameters/ local variables)
 
-## To avoid memory fragmentation
+### To avoid memory fragmentation
 
 - Relocatable Heap
 
@@ -101,11 +103,11 @@ memory usage:
 
   ![image-20220716190349561](/Users/deneb/Library/Application Support/typora-user-images/image-20220716190349561.png)
 
-## PS4 CPU layout
+### PS4 CPU layout
 
 ![image-20220716193052264](/Users/deneb/Library/Application Support/typora-user-images/image-20220716193052264.png)
 
-## Cache line
+### Cache line
 
 Least bytes cache will load from memory (**64** on PS4).
 
@@ -121,7 +123,7 @@ Least bytes cache will load from memory (**64** on PS4).
 
 - Above works better because it makes sure a single core is calling all the jobcount data, keep the 26 cycles calling efficiency.
 
-# Virtual methods
+## Virtual methods
 
 - **Static dispatch**: for normal in-calls methods, compiler will create a routine for each of them. (unique for each class, shared by all entities). When a function was called, compiler will find the generated routine of this function, and call it.
 - **Dynamic dispatch**: call via a base class pointer, try to call a derived class function.This cannot be dispatched in compiling (since compiler don't know that kind of entity was pointed by the base class pointer). It have to find the right reference at runtime.
@@ -136,23 +138,23 @@ Least bytes cache will load from memory (**64** on PS4).
     - found correct virtual table
     - call correct function
 
-# Virtual classes
+## Virtual classes
 
 - Diamond inheritance
 - ```Class B : virtual public A{}```
 - Virtual inheritance manually specified that the derived class will **Share** the status of base class.
 - Basically means for class B and classes derived from class B, they all share the same entity of class A.
 
-# Virtual Destructor
+## Virtual Destructor
 
 - Virtual destructor is needed unless it's not designed to be inherited.
 
-# Pure virtual
+## Pure virtual
 
 - ```virtual int foo(int x) = 0;```
 - In the virtual table, the entry of a pure virtual function will be null.
 
-# Static
+## Static
 
 - Inside functions
 
@@ -198,7 +200,7 @@ Least bytes cache will load from memory (**64** on PS4).
 
   - Can be called through ```A::foo();```
 
-# Friend
+## Friend
 
 - Friend class
 
@@ -226,7 +228,7 @@ Least bytes cache will load from memory (**64** on PS4).
 
 - *Friend* **cannot** be inherited, or passed. (friend's friend is not friend)
 
-# Const
+## Const
 
 - When its decorating a member function, means it cannot change any member variables in the class.
 
@@ -237,7 +239,7 @@ Least bytes cache will load from memory (**64** on PS4).
   - If const in *possiblepos1* or *possiblepos2*, it's a const value which means **\*myptr** is const, and ```*myptr = val``` will cause an error.
   - If const in possiblepos3, it's a const pointer which means **myptr** itself is const, and ```myptr = &val``` will cause an error.
 
-# Explicit
+## Explicit
 
 - Used before class constructors to prevent implicit conversions in classes.
 
@@ -256,13 +258,13 @@ Least bytes cache will load from memory (**64** on PS4).
   //~temp;
   ```
 
-# Extern
+## Extern
 
 - used when call a function/variable havn't been defined yet.
 - delay "looking for definition" to linking stage.
 - ```Extern "C" {void foo();}```: compile *foo()* in C (instead of C++).
 
-# Inline
+## Inline
 
 - **suggest** a function should be inlined.
 - Directly copy function body instead of function call.
@@ -270,7 +272,7 @@ Least bytes cache will load from memory (**64** on PS4).
 - **No recursive, no loop**
 - All functions defined **in class** are inline functions.
 
-# Union
+## Union
 
 ```c++
 union A{
@@ -294,7 +296,7 @@ cout << a.b.x << a.b.y << a.b.z <<endl;
 
 - Size is the same as the biggest data in the union.
 
-# New operator
+## New operator
 
 ```c++
 type *myPtr = new(address) (type)(init)
@@ -302,7 +304,7 @@ type *myPtr = new(address) (type)(init)
 
 For example, ```int *ptr = new(&x) int(10);``` means define a **int** pointer that stored in the address of **x**, abd init it by **10**.
 
-# std::move()
+## std::move()
 
 ```c++
 Swap(int &a, int &b){
@@ -312,7 +314,7 @@ Swap(int &a, int &b){
 } // std::move() was used to swap resources(instead of copy them)
 ```
 
-# Include guard
+## Include guard
 
 - Prevent a header file to be included and compiled multiple times in referecing.
 
@@ -327,13 +329,13 @@ Swap(int &a, int &b){
   #endif
   ```
 
-# include VS using
+## include VS using
 
 - include basically **copy** the value of the file into the include line.
 - includes was used to aware part of your source code(usually .c/.cpp file) of the declearation fo other part of source code (usually .h/.hpp file)
 - using basically tell the compiler you're using something, declear the scope so that you don't need to do it at every call.
 
-# Allocation pairings
+## Allocation pairings
 
 - C-style allocation
   - **malloc(size_t size)**
@@ -346,12 +348,93 @@ Swap(int &a, int &b){
     - will return type of target.
   - **delete**, **delete[]**
 
-# Time complexity
+## Time complexity
 
 $n! > 2^n > n^2 >> n log n >> n > log n > 1$
 
-# Smart pointers
+## Smart pointers
 
 - ```std::unique_ptr``` when only need one reference of the object
 - ```std::shared_ptr``` when need multiple reference of a object, will be released automatically when reference count is 0
 - ```std::weak_ptr``` hold a reference of a **shared_prt**, but won'n increase the reference count.
+
+## References vs. Pointers
+
+- References
+  - Cannot be reassigned
+  - Cannot be null
+  - Don't have their own address
+- Pointers
+  - A new variable with its own memory & size
+  - Allow pointer arithmetic like ```pointer++```(add address value by the size of data)
+
+## Casting
+
+- **const_cast**- overrides *const* and/or *volatile* for pointers/referenes
+- **dynamic_cast**- polymorphic pointers and references (down casting, base class pointer->derived class pointer)
+  - use static_cast is using a none-polymorphic type
+  - only valid if compiler RTTI is enabled
+  - casts at runtime
+- **reinterpret_cast**- risky, no restriction, do not use if necessary (*void\** from malloc)
+
+- **static_cast**- up casting
+  - casts at compile time
+
+## 6 functions auto-generated by compiler (all public)
+
+- default constructor - **Foo::Foo(){}**
+- copy constructor - **Foo (Foo const&){}**
+- copy assign operator - **=**
+- destructor - **Foo::~Foo(){}**
+
+- (c++11 only) move constructor - **Foo(Foo&&);** <- avoid copy
+- (c++11 only) move assignment operator - **Foo& operator =(Foo&&);**
+
+When they are not auto generated?   
+
+- When implemented on your own
+
+- When you explicitly prevent it: ```Foo(Foo const&) = delete;```
+- When compilers can't, like subclass don't know how to deal with base class data during copy
+
+## Compiler RTTI
+
+- Allows dynamic casting
+- Allows exception handling
+- Allows std::any
+
+
+
+# Data Structures
+
+## Hashing
+
+### map vs. unordered_map
+
+- map
+  - red-black tree
+  - data stored in order, easy for traversal
+  - high space usage (each node need to store its parent/child/red-black properity)
+  - worst **O(n)**, average **O($logn$)**
+- unoredered_map
+  - hash table
+  - data not stored in order
+  - worst **O(n)**, average **O(1)**
+
+### Hashing
+
+- hashtable is an **array** on the backend
+- hashing algorithms helps spread input values
+- Collision handling
+  - Open addressing: try to find the next available position in the hash table. ```Hi = (H(key) + di) MOD m```
+    - m = length of hashTable
+    - Construct hash table length as a prime number, for easy moding
+  - Separate chaining
+
+## Arrays
+
+```C++
+int myArray[sizeN];
+```
+
+- Access to an array element is very fast.
