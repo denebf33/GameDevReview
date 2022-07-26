@@ -465,3 +465,65 @@ When they are not auto generated?
 
 ![image-20220723162158243](./imgs/image-20220723162158243.png)
 
+# Math
+
+## Cartesian Coordinate Systems
+
+### 1D Mathematics
+
+- Natural numbers
+- Integers
+- Fractional numbers/ decimal
+
+- Rational numbers
+- Real numbers
+
+- **Trigonometry**
+
+### 2D Cartesian Space
+
+- All 2D coordinate systems are equal (different orientation/rotation)
+
+### 3D Cartesian Space
+
+- All axis are **perpendicular**
+- Left-handed coordinate/ Right-handed coordinate
+- Left-handed rotation rule/ Right-handed rotation rule
+
+$sec\theta=\frac{1}{cos\theta}$, $tan\theta=\frac{sin\theta}{cos\theta}$, $csc=\frac{1}{sin\theta}$, $cot\theta = \frac{1}{tan\theta} = \frac{cos\theta}{sin\theta}$
+
+## Vectors
+
+- Scalar vs. vectors
+- **displacement**
+
+- **No** multiplication sign when multiplying a scalar with a vector
+
+#### Dot product
+
+- $a\cdot b = \sum_{i=1}^{n}{a_ib_i}$
+- product is a **scalar**, and a **signed value**, will be negative when two vectors are opposite, **0** when two vectors are **perpendicular**
+
+- The dot product $a\cdot b$ is equal to the signed length of the **projection** of $b$ onto any line parallel to $a$, multiplied by the **length** of $a$
+
+- $v\cdot v = \|v\|^2$, $\|v\| = \sqrt{v\cdot v}$
+
+- $b_{parallel} = (\widehat{a}\cdot b)\widehat{a}$, $b_{perpendicular}=b-(\widehat{a}\cdot b)\widehat{a}$
+- The dot product of two vectors $a$ and $b$ is equal to the **cosine** of the angle $\theta$ between the vectors, multiplied by the lengths of the vectors.
+- $a\cdot b = \|a\|\|b\|cos\theta$
+
+- $\theta = arccos(\frac{a\cdot b}{\|a\|\|b\|})$
+
+#### Cross product
+
+- $\begin{vmatrix}x_1 \\y_2 \\z_3\end{vmatrix} \cross \begin{vmatrix}x_2 \\y_2 \\z_3\end{vmatrix} = \begin{vmatrix}y_1z_2 - z_1y_2 \\z_1x_2 - x_1z_2 \\x_1y_2 - y_1x_2\end{vmatrix}$
+
+- **Not commutative**: $a\cross b = -(b\cross a)$
+- Yields a vector that is perpendicular to the original two vectors.
+- $\|a\cross b\| = \|a\|\|b\|sin\theta$
+
+- When two vectors are parallel (or one of them is $0$), product of cross will be $0$, this means the product is **parallel** to all other vectors
+- How to determine the direction of cross production($a\cross b$)?
+  - Align $a$'s head to $b$'s tail, then see $b$ is rotation clockwise or counterclockwise around $a$
+  - ![Snipaste_2022-07-26_09-43-59](C:\Users\61014\Desktop\GameDevReview\imgs\Snipaste_2022-07-26_09-43-59.png)
+  - Or use hand, **thumb** points a, **index finger** points b
